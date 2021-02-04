@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @falta.tipo %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @falta.nombre %>
+</p>
+
+<p>
+  <strong>Norma:</strong>
+  <%= @falta.norma %>
+</p>
+
+<p>
+  <strong>Posicion:</strong>
+  <%= @falta.posicion %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @falta.descripcion %>
+</p>
+
+<p>
+  <strong>Sanciones:</strong>
+  <%= @falta.sanciones %>
+</p>
+
+<%= link_to 'Edit', edit_falta_path(@falta) %> |
+<%= link_to 'Back', faltas_path %>

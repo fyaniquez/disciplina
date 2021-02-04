@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @involucrado.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @involucrado.estado %>
+</p>
+
+<p>
+  <strong>Caso:</strong>
+  <%= @involucrado.caso_id %>
+</p>
+
+<p>
+  <strong>Alumno:</strong>
+  <%= @alumno.nombre %>
+</p>
+
+<p>
+  <strong>Participacion:</strong>
+  <%= @involucrado.participacion %>
+</p>
+
+<p>
+  <strong>Contravenciones encontradas:</strong>
+  <% if @contravenciones.empty? %>
+    <p>No hay contravenciones registradas aún</p>
+  <% else %>
+  <table>
+  <thead>
+  <tr>
+  <th>Nro.</th>
+  <th>Descripción</th>
+  <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @contravenciones.each do |contravencion|%>
+  <tr>
+  <td><%= contravencion.id %></td>
+  <td><%= contravencion.descripcion %></td>
+  <td><%= link_to 'Ver', contravencion %></td>
+  <td><%= link_to 'Editar', edit_contravencion_path(contravencion) %></td>
+  <td><%= link_to 'Borrar', contravencion, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  <tr>
+  <% end %>
+  </tbody>
+  </table>
+  <% end %>
+  <%= link_to 'Agregar contravencion', new_caso_involucrado_contravencion_path(@involucrado.caso_id, @involucrado) %>  
+</p>
+<p>
+  <strong>Castigos aplicados:</strong>
+  <% if @castigos.empty? %>
+    <p>No se han aplicado castigos aún</p>
+  <% else %>
+  <table>
+  <thead>  
+  <tr>
+  <th>Nro.</th>
+  <th>Fecha</th>
+  <th>Descripción</th>
+  <th>Estado</th>
+  <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @castigos.each do |castigo|%>
+  <tr>
+  <td><%= castigo.id %></td>
+  <td><%= castigo.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= castigo.glosa %></td>
+  <td><%= castigo.estado %></td>
+  <td><%= link_to 'Ver', castigo %></td>
+  <td><%= link_to 'Editar', edit_castigo_path(castigo) %></td>
+  <td><%= link_to 'Borrar', castigo, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+  <% end %>  
+  <%= link_to 'Agregar castigo', new_caso_involucrado_castigo_path(@involucrado.caso_id, @involucrado) %>
+</p>
+
+<%= link_to 'Modificar involucrado', edit_involucrado_path(@involucrado) %> |
+<%= link_to 'Volver caso', caso_path(@involucrado.caso_id) %>

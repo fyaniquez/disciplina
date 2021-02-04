@@ -1,0 +1,43 @@
+<%= form_with(model: involucrado) do |form| %>
+  <% if involucrado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(involucrado.errors.count, "errores") %> evitaron que este involucrado fuera grabado:</h2>
+
+      <ul>
+        <% involucrado.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.text_field :fecha, :hidden => true %>
+    <input value="<%= @involucrado.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>" readonly>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_id %>
+    <%= form.text_field :caso_id, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :alumno_id %>
+    <%= form.collection_select :alumno_id, Alumno.all, :id, :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :participacion %>
+    <%= form.text_area :participacion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

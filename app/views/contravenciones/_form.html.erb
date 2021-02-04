@@ -1,0 +1,44 @@
+<%= form_with(model: contravencion) do |form| %>
+  <% if contravencion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contravencion.errors.count, "errores") %> evitaron que esta contravención fuera grabada:</h2>
+
+      <ul>
+        <% contravencion.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :fecha %>
+    <%= form.text_field :fecha, :hidden => true %>
+    <input value="<%= contravencion.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>" readonly>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_id %>
+    <%= form.text_field :caso_id, :readonly => true %>
+  </div>
+ 
+  <%= form.text_field :involucrado_id, :hidden => true %>
+  <div class="field">
+    <%= form.label :involucrado_id %>
+    <input type="text" value="<%= contravencion.involucrado.alumno.nombre %>" readonly>
+  </div>
+  
+  <div class="field">
+    <%= form.label :falta_id %>
+    <%= form.collection_select :falta_id, Falta.all, :id, :tipo_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

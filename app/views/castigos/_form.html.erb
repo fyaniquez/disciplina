@@ -1,0 +1,48 @@
+<%= form_with(model: castigo) do |form| %>
+  <% if castigo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(castigo.errors.count, "errores") %> evitaron que este castigo fuera grabado:</h2>
+
+      <ul>
+        <% castigo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.text_field :fecha, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_id %>
+    <%= form.text_field :caso_id, :readonly => true %>
+  </div>
+
+  <%= form.text_field :involucrado_id, :hidden => true %>
+  <div class="field">
+    <%= form.label :involucrado_id %>
+    <input type="text" value="<%= castigo.involucrado.alumno.nombre %>" readonly>
+  </div>
+
+  <div class="field">
+    <%= form.label :sancion_id %>
+    <%= form.collection_select :sancion_id, @sanciones, :id, :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

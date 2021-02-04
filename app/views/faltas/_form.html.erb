@@ -1,0 +1,47 @@
+<%= form_with(model: falta) do |form| %>
+  <% if falta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(falta.errors.count, "errores") %> evitaron que esta falta fuera grabada:</h2>
+
+      <ul>
+        <% falta.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.text_field :tipo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :norma %>
+    <%= form.text_field :norma %>
+  </div>
+
+  <div class="field">
+    <%= form.label :posicion %>
+    <%= form.text_field :posicion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sanciones %>
+    <%= form.text_area :sanciones %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

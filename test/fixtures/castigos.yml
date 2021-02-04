@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2021-01-31 23:26:35
+  estado: MyString
+  caso: one
+  sancion: one
+  alumno: one
+  descripcion: MyText
+
+two:
+  fecha: 2021-01-31 23:26:35
+  estado: MyString
+  caso: two
+  sancion: two
+  alumno: two
+  descripcion: MyText

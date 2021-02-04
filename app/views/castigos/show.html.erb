@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @castigo.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @castigo.estado %>
+</p>
+
+<p>
+  <strong>Caso:</strong>
+  <%= "#{@castigo.caso_id}: #{@castigo.caso.descripcion}" %>
+</p>
+
+<p>
+  <strong>Alumno:</strong>
+  <%= @castigo.involucrado.alumno.nombre %>
+</p>
+
+<p>
+  <strong>Sancion:</strong>
+  <%= @castigo.sancion.descripcion %>
+</p>
+
+
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @castigo.descripcion %>
+</p>
+
+<%= link_to 'Modificar', edit_castigo_path(@castigo) %> |
+<%= link_to 'Volver', @castigo.involucrado %>

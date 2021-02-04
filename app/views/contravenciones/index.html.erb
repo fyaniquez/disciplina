@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contravenciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th>Caso</th>
+      <th>Falta</th>
+      <th>Alumno</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contravenciones.each do |contravencion| %>
+      <tr>
+        <td><%= contravencion.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= contravencion.estado %></td>
+        <td><%= contravencion.caso_id %></td>
+        <td><%= contravencion.falta_id %></td>
+        <td><%= contravencion.alumno_id %></td>
+        <td><%= contravencion.descripcion %></td>
+        <td><%= link_to 'Ver', contravencion %></td>
+        <td><%= link_to 'Modificar', edit_contravencion_path(contravencion) %></td>
+        <td><%= link_to 'Borrar', contravencion, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Contravencion', new_contravencion_path %>

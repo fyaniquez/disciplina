@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @caso.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @caso.estado %>
+</p>
+<p>
+  <strong>Descripcion:</strong>
+  <%= @caso.descripcion %>
+</p>
+<p>
+  <strong>Denunciante:</strong>
+  <%= @caso.denunciante %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @caso.responsable %>
+</p>
+
+<p>
+  <strong>Estudiantes involucrados:</strong>
+  <% if @involucrados.empty? %>
+    <p>No hay estudiantes registrados aún</p>
+  <% else %>
+  <table>
+  <thead>
+  <tr>
+  <th>
+    Nombre
+  </th>
+  <th colspan="3"></th>
+  </thead>
+  <tbody>
+  <% @involucrados.each do |involucrado|%>
+  <tr>
+  <td><%= involucrado.alumno.nombre %></td>
+  <td><%= link_to 'Ver', involucrado %></td>
+  <td><%= link_to 'Editar', edit_involucrado_path(involucrado) %></td>
+  <td><%= link_to 'Borrar', involucrado, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+  <% end %>
+  <%= link_to 'Agregar alumno involucrado', new_caso_involucrado_path(@caso) %>  
+</p>
+<p>
+  <strong>Historial/Documentación:</strong>
+  <% if @seguimientos.empty? %>
+    <p>No hay eventos registrados aún</p>
+  <% else %>
+  <table>
+  <thead>  
+  <tr>
+  <th>Nro.</th>
+  <th>Fecha</th>
+  <th>Glosa</th>
+  <th colspan="3"></th>
+  </thead>
+  <tbody>
+  <% @seguimientos.each do |seguimiento|%>
+  <tr>
+  <td><%= seguimiento.id %></td>
+  <td><%= seguimiento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><%= seguimiento.glosa.length > 50 ? seguimiento.glosa.slice(0..50) + "..." : seguimiento.glosa %></td>
+  <td><%= link_to 'Ver', seguimiento %></td>
+  <td><%= link_to 'Editar', edit_seguimiento_path(seguimiento) %></td>
+  <td><%= link_to 'Borrar', seguimiento, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+  <% end %>
+  <%= link_to 'Agregar nueva nota/evento/documento', new_caso_seguimiento_path(@caso) %>  
+</p>
+<%= link_to 'Editar Caso', edit_caso_path(@caso) %> |
+<%= link_to 'Lista de casos', casos_path %>

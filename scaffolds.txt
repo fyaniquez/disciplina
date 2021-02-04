@@ -1,0 +1,9 @@
+#rails g scaffold alumno nombre:string rude:string ci:string
+#rails g scaffold falta tipo:string nombre:string norma:string posicion:string descripcion:text sanciones:text
+rails g scaffold sancion estado:string norma:string posicion:string nombre:string descripcion:text 
+#rails g scaffold caso fecha:datetime estado:string denunciante:string descripcion:text responsable:string 
+#rails g scaffold involucrado fecha:datetime estado:string caso:references alumno:references participacion:text 
+rails g scaffold contravencion fecha:datetime estado:string caso:references falta:references alumno:references descripcion:text 
+#rails g scaffold castigo fecha:datetime estado:string caso:references sancion:references alumno:references descripcion:text 
+#rails g scaffold seguimiento fecha:datetime caso:references numero:integer glosa:text
+#rails g scaffold documento fecha:datetime seguimiento:references archivo:string descripcion:string

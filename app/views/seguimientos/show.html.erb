@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @seguimiento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Caso:</strong>
+  <%= @seguimiento.caso_id %>
+</p>
+
+<p>
+  <strong>Glosa:</strong>
+  <%= @seguimiento.glosa %>
+</p>
+
+<p>
+  <strong>Documentos:</strong>
+  <% if @documentos.empty? %>
+    <p>No hay documentos adjuntos</p>
+  <% else %>
+  <table>
+  <thead>  
+  <tr>
+  <th>Nro.</th>
+  <th>Fecha</th>
+  <th>Archivo</th>
+  <th>Descripción</th>
+  <th colspan="3"></th>
+  </thead>
+  <tbody>
+  <% @documentos.each do |documento|%>
+  <tr>
+  <td><%= documento.id %></td>
+  <td><%= documento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+  <td><a href="/docs/<%= documento.adjunto %>"><%= documento.archivo %></a></td>
+  <td><%= documento.descripcion.length > 20 ? documento.descripcion.slice(0..20) + "..." : documento.descripcion %></td>
+  <td><%= link_to 'Ver', documento %></td>
+  <td><%= link_to 'Editar', edit_documento_path(documento) %></td>
+  <td><%= link_to 'Borrar', documento, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  </table>
+  <% end %>
+  <%= link_to 'Agregar nuevo documento', new_caso_seguimiento_documento_path(@seguimiento.caso_id, @seguimiento ) %>  
+</p>
+
+<%= link_to 'Modificar seguimiento', edit_seguimiento_path(@seguimiento) %> |
+<%= link_to 'Volver a caso', caso_path(@seguimiento.caso_id) %>

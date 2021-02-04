@@ -1,0 +1,34 @@
+<%= form_with(model: seguimiento) do |form| %>
+  <% if seguimiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seguimiento.errors.count, "errores") %>evitaron que este seguimiento fuera grabado:</h2>
+
+      <ul>
+        <% seguimiento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%- fecha_string = form.object.fecha && form.object.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>
+    <%= form.text_field :fecha, :value => fecha_string, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_id %>
+    <%= form.text_field :caso_id, :hidden => true, :readonly => true %>
+    <input type="text" value="<%= @seguimiento.caso_id  %>">
+  </div>
+
+  <div class="field">
+    <%= form.label :glosa %>
+    <%= form.text_area :glosa %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

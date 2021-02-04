@@ -1,0 +1,2 @@
+module InvolucradosHelper
+end

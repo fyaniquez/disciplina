@@ -1,0 +1,43 @@
+<%= form_with(model: caso) do |form| %>
+  <% if caso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caso.errors.count, "errores") %> evitaron que este caso fuera grabado:</h2>
+
+      <ul>
+        <% caso.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.text_field :fecha, :hidden => true %>
+    <input value="<%= @caso.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>" readonly>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :denunciante %>
+    <%= form.text_field :denunciante %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsable %>
+    <%= form.text_field :responsable %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

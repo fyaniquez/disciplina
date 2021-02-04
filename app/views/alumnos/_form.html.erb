@@ -1,0 +1,32 @@
+<%= form_with(model: alumno) do |form| %>
+  <% if alumno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(alumno.errors.count, "errores") %> evitaron que este alumno fuera grabado:</h2>
+
+      <ul>
+        <% alumno.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rude %>
+    <%= form.text_field :rude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ci %>
+    <%= form.text_field :ci %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

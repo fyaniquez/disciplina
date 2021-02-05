@@ -22,9 +22,9 @@
         <td><%= sancion.posicion %></td>
         <td><%= sancion.nombre %></td>
         <td><%= sancion.descripcion %></td>
-        <td><%= link_to 'Show', sancion %></td>
-        <td><%= link_to 'Edit', edit_sancion_path(sancion) %></td>
-        <td><%= link_to 'Destroy', sancion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', sancion, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_sancion_path(sancion), :class => "button" %></td>
+        <td><%= link_to 'Borrar', sancion, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>

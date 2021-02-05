@@ -4,11 +4,50 @@
 <head>
     <title>The page you were looking for doesn't exist (404)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 150px;
+            background-color: #f1f1f1;
+            height: 100%;
+            /* Full height */
+            position: fixed;
+            /* Make it stick, even on scroll */
+            overflow: auto;
+            /* Enable scrolling if the sidenav has too much content */
+        }
+        
+        li {
+            text-align: center;
+            border-bottom: 1px solid #555;
+            border-right: 1px solid #555;
+            border-left: 1px solid #555;
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+        }
+        
+        li a hover {
+            background-color: #555;
+            color: white;
+        }
+        
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
     <ul>
-        <li><a href="/casos">Casos</a></li>
+        <li class="active"><a href="/casos">Casos</a></li>
         <li><a href="/alumnos">Alumnos</a></li>
         <li><a href="/faltas">Faltas</a></li>
         <li><a href="/sanciones">Sanciones</a></li>

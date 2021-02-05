@@ -24,9 +24,9 @@
         <td><%= contravencion.falta_id %></td>
         <td><%= contravencion.alumno_id %></td>
         <td><%= contravencion.descripcion %></td>
-        <td><%= link_to 'Ver', contravencion %></td>
-        <td><%= link_to 'Modificar', edit_contravencion_path(contravencion) %></td>
-        <td><%= link_to 'Borrar', contravencion, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+        <td><%= link_to 'Ver', contravencion, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_contravencion_path(contravencion), :class => "button" %></td>
+        <td><%= link_to 'Borrar', contravencion, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'Nueva Contravencion', new_contravencion_path %>
+<%= link_to 'Nueva Contravencion', new_contravencion_path, :class => "button" %>

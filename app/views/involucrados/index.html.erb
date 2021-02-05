@@ -22,9 +22,9 @@
         <td><%= involucrado.caso_id %></td>
         <td><%= involucrado.alumno_id %></td>
         <td><%= involucrado.participacion %></td>
-        <td><%= link_to 'Show', involucrado %></td>
-        <td><%= link_to 'Edit', edit_involucrado_path(involucrado) %></td>
-        <td><%= link_to 'Destroy', involucrado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', involucrado, :class => "button" %></td>
+        <td><%= link_to 'Edit', edit_involucrado_path(involucrado), :class => "button" %></td>
+        <td><%= link_to 'Destroy', involucrado, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Estudiante Involucrado', new_caso_involucrado_path(@caso) %>
+<%= link_to 'Nuevo Estudiante Involucrado', new_caso_involucrado_path(@caso), :class => "button" %>

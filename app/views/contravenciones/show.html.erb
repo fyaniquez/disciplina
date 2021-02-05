@@ -31,5 +31,5 @@
   <%= @contravencion.descripcion %>
 </p>
 
-<%= link_to 'Modificar', edit_contravencion_path(@contravencion) %> |
-<%= link_to 'Volver', @contravencion.involucrado %>
+<%= link_to 'Modificar', edit_contravencion_path(@contravencion), :class => "button" %> |
+<%= link_to 'Volver', @contravencion.involucrado, :class => "button" %>

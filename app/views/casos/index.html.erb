@@ -22,9 +22,9 @@
         <td><%= caso.denunciante %></td>
         <td><%= caso.descripcion %></td>
         <td><%= caso.responsable %></td>
-        <td><%= link_to 'Ver', caso %></td>
-        <td><%= link_to 'Modificar', edit_caso_path(caso) %></td>
-        <td><%= link_to 'Borrar', caso, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+        <td><%= link_to 'Ver', caso, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_caso_path(caso), :class => "button" %></td>
+        <td><%= link_to 'Borrar', caso, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Caso', new_caso_path %>
+<%= link_to 'Nuevo Caso', new_caso_path, :class => "button" %>

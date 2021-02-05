@@ -30,7 +30,7 @@
   <div class="field">
     <%= form.label :alumno_id %>
     <%= form.collection_select :alumno_id, Alumno.all, :id, :nombre %>
-    <%= link_to 'Agregar nuevo alumno', new_caso_alumno_path(@involucrado.caso.id) %>
+    <%= link_to 'Agregar nuevo alumno', new_caso_alumno_path(@involucrado.caso.id), :class => "button" %>
   </div>
 
   <div class="field">

@@ -32,5 +32,5 @@
   <%= @castigo.descripcion %>
 </p>
 
-<%= link_to 'Modificar', edit_castigo_path(@castigo) %> |
-<%= link_to 'Volver', @castigo.involucrado %>
+<%= link_to 'Modificar', edit_castigo_path(@castigo), :class => "button" %> |
+<%= link_to 'Volver', @castigo.involucrado, :class => "button" %>

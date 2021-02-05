@@ -24,9 +24,9 @@
         <td><%= castigo.sancion_id %></td>
         <td><%= castigo.alumno_id %></td>
         <td><%= castigo.descripcion %></td>
-        <td><%= link_to 'Ver', castigo %></td>
-        <td><%= link_to 'Modificar', edit_castigo_path(castigo) %></td>
-        <td><%= link_to 'Borrar', castigo, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+        <td><%= link_to 'Ver', castigo, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_castigo_path(castigo), :class => "button" %></td>
+        <td><%= link_to 'Borrar', castigo, method: :delete, data: { confirm: 'Esta seguro?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Castigo', new_castigo_path %>
+<%= link_to 'Nuevo Castigo', new_castigo_path, :class => "button" %>

@@ -20,9 +20,9 @@
         <td><%= seguimiento.caso_id %></td>
         <td><%= seguimiento.numero %></td>
         <td><%= seguimiento.glosa %></td>
-        <td><%= link_to 'Show', seguimiento %></td>
-        <td><%= link_to 'Edit', edit_seguimiento_path(seguimiento) %></td>
-        <td><%= link_to 'Destroy', seguimiento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', seguimiento, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_seguimiento_path(seguimiento), :class => "button" %></td>
+        <td><%= link_to 'Borrar', seguimiento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

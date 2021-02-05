@@ -40,22 +40,23 @@
   <% @involucrados.each do |involucrado|%>
   <tr>
   <td><%= involucrado.alumno.nombre %></td>
-  <td><%= link_to 'Ver', involucrado %></td>
-  <td><%= link_to 'Editar', edit_involucrado_path(involucrado) %></td>
-  <td><%= link_to 'Borrar', involucrado, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  <td><%= link_to 'Ver', involucrado, :class => "button" %></td>
+  <td><%= link_to 'Editar', edit_involucrado_path(involucrado), :class => "button" %></td>
+  <td><%= link_to 'Borrar', involucrado, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => "button" %></td>
   </tr>
   <% end %>
   </tbody>
   </table>
   <% end %>
-  <%= link_to 'Agregar alumno involucrado', new_caso_involucrado_path(@caso) %>  
+  <%= link_to 'Agregar alumno involucrado', new_caso_involucrado_path(@caso), :class => "button" %>  
 </p>
 <p>
-  <strong>Historial/Documentación:</strong>
+  
   <% if @seguimientos.empty? %>
     <p>No hay eventos registrados aún</p>
   <% else %>
   <table>
+  <caption>Seguimiento</caption>
   <thead>  
   <tr>
   <th>Nro.</th>
@@ -69,15 +70,15 @@
   <td><%= seguimiento.id %></td>
   <td><%= seguimiento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
   <td><%= seguimiento.glosa.length > 50 ? seguimiento.glosa.slice(0..50) + "..." : seguimiento.glosa %></td>
-  <td><%= link_to 'Ver', seguimiento %></td>
-  <td><%= link_to 'Editar', edit_seguimiento_path(seguimiento) %></td>
-  <td><%= link_to 'Borrar', seguimiento, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+  <td><%= link_to 'Ver', seguimiento, :class => "button" %></td>
+  <td><%= link_to 'Editar', edit_seguimiento_path(seguimiento), :class => "button" %></td>
+  <td><%= link_to 'Borrar', seguimiento, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => "button" %></td>
   </tr>
   <% end %>
   </tbody>
   </table>
   <% end %>
-  <%= link_to 'Agregar nueva nota/evento/documento', new_caso_seguimiento_path(@caso) %>  
+  <%= link_to 'Agregar nueva nota/evento/documento', new_caso_seguimiento_path(@caso), :class => "button" %>  
 </p>
-<%= link_to 'Editar Caso', edit_caso_path(@caso) %> |
-<%= link_to 'Lista de casos', casos_path %>
+<%= link_to 'Editar Caso', edit_caso_path(@caso), :class => "button" %> |
+<%= link_to 'Lista de casos', casos_path, :class => "button" %>

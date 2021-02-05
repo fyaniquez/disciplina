@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sistema Disciplinario</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Sistema Disciplinario</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="menu">
+    <ul class="opcion">
+    <li class="opcion">
+        <h3>U.E. <br/>Franz Tamayo 3</h3>
+      </li>
+      <li class="opcion"><img src="<%=asset_path('franztamayo.jpg')%>"></li>      
+      <li class="opcion"><h4>Sistema de Control Disciplinario</h4></li>
+      <li class="opcion"><a href="/casos">Casos</a></li>
+      <li class="opcion"><a href="/alumnos">Alumnos</a></li>
+      <li class="opcion"><a href="/faltas">Faltas</a></li>
+      <li class="opcion"><a href="/sanciones">Sanciones</a></li>
+    </ul>
+  </div>
+  <div class="cuerpo">
     <%= yield %>
-  </body>
+  </div>
+
+</body>
+
 </html>

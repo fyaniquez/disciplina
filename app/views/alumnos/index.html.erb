@@ -18,8 +18,8 @@
         <td><%= alumno.nombre %></td>
         <td><%= alumno.rude %></td>
         <td><%= alumno.ci %></td>
-        <td><%= link_to 'Modificar', edit_alumno_path(alumno) %></td>
-        <td><%= link_to 'Borrar', alumno, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
+        <td><%= link_to 'Modificar', edit_alumno_path(alumno), :class => "button" %></td>
+        <td><%= link_to 'Borrar', alumno, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => "button" %></td>
       </tr>
     <% end %>
   </tbody>

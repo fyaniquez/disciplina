@@ -36,14 +36,14 @@
   <td><%= documento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
   <td><a target="_blank" download="<%= documento.archivo %>" href="/docs/<%= documento.adjunto %>"><%= documento.archivo %></a></td>
   <td><%= documento.descripcion.length > 20 ? documento.descripcion.slice(0..20) + "..." : documento.descripcion %></td>
-  <td><a target="_blank" download="<%= documento.archivo %>" href="/docs/<%= documento.adjunto %>">Descargar</a></td>
+  <td><a class="button" target="_blank" download="<%= documento.archivo %>" href="/docs/<%= documento.adjunto %>">Descargar</a></td>
   <td><%= link_to 'Borrar', documento, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
   </tr>
   <% end %>
   </tbody>
   </table>
   <% end %>
-  <%= link_to 'Agregar nuevo documento', new_caso_seguimiento_documento_path(@seguimiento.caso_id, @seguimiento ) %>  
+  <%= link_to 'Agregar nuevo documento', new_caso_seguimiento_documento_path(@seguimiento.caso_id, @seguimiento ), :class => "button" %>  
 </p>
 
-<%= link_to 'Volver a caso', caso_path(@seguimiento.caso_id) %>
+<%= link_to 'Volver a caso', caso_path(@seguimiento.caso_id), :class => "button" %>

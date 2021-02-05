@@ -34,10 +34,9 @@
   <tr>
   <td><%= documento.id %></td>
   <td><%= documento.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
-  <td><a href="/docs/<%= documento.adjunto %>"><%= documento.archivo %></a></td>
+  <td><a target="_blank" download="<%= documento.archivo %>" href="/docs/<%= documento.adjunto %>"><%= documento.archivo %></a></td>
   <td><%= documento.descripcion.length > 20 ? documento.descripcion.slice(0..20) + "..." : documento.descripcion %></td>
-  <td><%= link_to 'Ver', documento %></td>
-  <td><%= link_to 'Editar', edit_documento_path(documento) %></td>
+  <td><a target="_blank" download="<%= documento.archivo %>" href="/docs/<%= documento.adjunto %>">Descargar</a></td>
   <td><%= link_to 'Borrar', documento, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
   </tr>
   <% end %>
@@ -47,5 +46,4 @@
   <%= link_to 'Agregar nuevo documento', new_caso_seguimiento_documento_path(@seguimiento.caso_id, @seguimiento ) %>  
 </p>
 
-<%= link_to 'Modificar seguimiento', edit_seguimiento_path(@seguimiento) %> |
 <%= link_to 'Volver a caso', caso_path(@seguimiento.caso_id) %>

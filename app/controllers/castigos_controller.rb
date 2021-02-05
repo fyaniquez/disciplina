@@ -17,26 +17,23 @@ class CastigosController < ApplicationController
     @castigo = Castigo.new
     @castigo.fecha = Time.now
     @castigo.estado = 'Pendiente'
-    @castigo.caso_id = param[:caso_id]
+    @castigo.caso_id = params[:caso_id]
     @castigo.involucrado_id = params[:involucrado_id]
-    @sanciones = Sancion.all
-    @involucrado = Involucrado.find(@contravencion.involucrado_id)
   end
 
   # GET /castigos/1/edit
   def edit
-    @sanciones = Sancion.all
   end
 
   # POST /castigos or /castigos.json
   def create
     @castigo = Castigo.new(castigo_params)
-    @involucrado = Involucrado.find(@contravencion.involucrado_id)
+    @involucrado = Involucrado.find(@castigo.involucrado_id)
     @alumno = Alumno.find(@involucrado.alumno_id)
 
     respond_to do |format|
       if @castigo.save
-        format.html { redirect_to @involucrado, notice: "Castigo was successfully created." }
+        format.html { redirect_to @involucrado, notice: "Castigo creado." }
         format.json { render :show, status: :created, location: @castigo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,7 +59,7 @@ class CastigosController < ApplicationController
   def destroy
     @castigo.destroy
     respond_to do |format|
-      format.html { redirect_to @contravencion.involucrado, notice: "Castigo borrado." }
+      format.html { redirect_to @castigo.involucrado, notice: "Castigo borrado." }
       format.json { head :no_content }
     end
   end

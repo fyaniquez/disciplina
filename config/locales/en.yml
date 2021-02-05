@@ -41,6 +41,14 @@ en:
         participacion: "Participación"
     errors:
       models:
+        documento:
+          attributes:
+            descripcion:
+              blank: "No puede dejarse en blanco"
+        seguimiento:
+          attributes:
+            glosa:
+              blank: "No puede dejarse en blanco"
         contravencion:
           attributes:
             descripcion:

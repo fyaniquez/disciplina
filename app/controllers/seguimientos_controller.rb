@@ -29,7 +29,7 @@ class SeguimientosController < ApplicationController
 
     respond_to do |format|
       if @seguimiento.save
-        format.html { redirect_to @seguimiento, notice: "Seguimiento creado." }
+        format.html { redirect_to @seguimiento.caso, notice: "Seguimiento creado." }
         format.json { render :show, status: :created, location: @seguimiento }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class SeguimientosController < ApplicationController
   def update
     respond_to do |format|
       if @seguimiento.update(seguimiento_params)
-        format.html { redirect_to @seguimiento, notice: "Seguimiento actualizado." }
+        format.html { redirect_to @seguimiento.caso, notice: "Seguimiento actualizado." }
         format.json { render :show, status: :ok, location: @seguimiento }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,9 +53,17 @@ class SeguimientosController < ApplicationController
 
   # DELETE /seguimientos/1 or /seguimientos/1.json
   def destroy
-    @seguimiento.destroy
+    begin
+      @seguimiento.destroy
+    rescue ActiveRecord::InvalidForeignKey => e
+      respond_to do |format|
+        format.html { redirect_to @seguimiento.caso, notice: "No se puede borrar el seguimiento hasta no eliminar sus documentos." }
+        format.json { head :no_content }
+      end
+      return
+    end  
     respond_to do |format|
-      format.html { redirect_to seguimientos_url, notice: "Seguimiento borrado." }
+      format.html { redirect_to @seguimiento.caso, notice: "Seguimiento borrado." }
       format.json { head :no_content }
     end
   end

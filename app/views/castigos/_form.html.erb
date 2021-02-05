@@ -13,7 +13,8 @@
 
   <div class="field">
     <%= form.label :fecha %>
-    <%= form.text_field :fecha, :readonly => true %>
+    <%= form.text_field :fecha, :hidden => true %>
+    <input value="<%= @castigo.fecha.localtime.strftime("%d/%m/%Y %H:%M") %>" readonly>
   </div>
 
   <div class="field">
@@ -34,7 +35,7 @@
 
   <div class="field">
     <%= form.label :sancion_id %>
-    <%= form.collection_select :sancion_id, @sanciones, :id, :nombre %>
+    <%= form.collection_select :sancion_id, Sancion.all, :id, :nombre %>
   </div>
 
   <div class="field">

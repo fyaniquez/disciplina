@@ -5,7 +5,6 @@ class InvolucradosController < ApplicationController
   # GET /involucrados or /involucrados.json
   def index
     @involucrados = Involucrado.all
-    #@caso = Caso.find(params[:caso_id])
   end
 
   # GET /involucrados/1 or /involucrados/1.json
@@ -41,7 +40,7 @@ class InvolucradosController < ApplicationController
         @involucrado.errors.add(:alumno_id, :blank, message: "duplicado en el caso")
       end
       if ok
-        format.html { redirect_to @involucrado, notice: "Involucrado creado." }
+        format.html { redirect_to @involucrado.caso, notice: "Involucrado creado." }
         format.json { render :show, status: :created, location: @involucrado }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -82,7 +81,6 @@ class InvolucradosController < ApplicationController
       return
     end
     respond_to do |format|
-      #format.html { redirect_to involucrados_url, notice: "Involucrado borrado." }
       format.html { redirect_to @involucrado.caso, notice: "Involucrado borrado." }
       format.json { head :no_content }
     end

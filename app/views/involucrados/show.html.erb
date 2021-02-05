@@ -73,7 +73,7 @@
   <tr>
   <td><%= castigo.id %></td>
   <td><%= castigo.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
-  <td><%= castigo.glosa %></td>
+  <td><%= castigo.descripcion %></td>
   <td><%= castigo.estado %></td>
   <td><%= link_to 'Ver', castigo %></td>
   <td><%= link_to 'Editar', edit_castigo_path(castigo) %></td>

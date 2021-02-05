@@ -1,4 +1,5 @@
 class Documento < ApplicationRecord
   belongs_to :seguimiento
-  #mount_uploader :adjunto, AdjuntoUploader
+  validates :descripcion, :presence => true
+  validates :archivo, :presence => true
 end

@@ -1,4 +1,6 @@
 class DocumentosController < ApplicationController
+  before_action :get_caso, only: %i[ index ]
+  before_action :get_seguimiento, only: %i[ index ]
   before_action :set_documento, only: %i[ show edit update destroy ]
 
   # GET /documentos or /documentos.json
@@ -14,6 +16,7 @@ class DocumentosController < ApplicationController
   def new
     @documento = Documento.new
     @documento.fecha = Time.now
+    @documento.seguimiento_id = params[:seguimiento_id]
   end
 
   # GET /documentos/1/edit
@@ -23,12 +26,19 @@ class DocumentosController < ApplicationController
   # POST /documentos or /documentos.json
   def create
     @documento = Documento.new(documento_params)
-    upload   
-    respond_to do |format|
-      if @documento.save
-        format.html { redirect_to @documento, notice: "Documento was successfully created." }
-        format.json { render :show, status: :created, location: @documento }
-      else
+    if upload   
+      respond_to do |format|
+        if @documento.save
+          format.html { redirect_to @documento.seguimiento, notice: "Documento creado." }
+          format.json { render :show, status: :created, location: @documento }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @documento.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @documento.errors.add(:archivo, :blank, message: "Debe adjuntar un documento.")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @documento.errors, status: :unprocessable_entity }
       end
@@ -39,7 +49,7 @@ class DocumentosController < ApplicationController
   def update
     respond_to do |format|
       if @documento.update(documento_params)
-        format.html { redirect_to @documento, notice: "Documento was successfully updated." }
+        format.html { redirect_to @documento.seguimiento, notice: "El Documento fue actualizado." }
         format.json { render :show, status: :ok, location: @documento }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +62,7 @@ class DocumentosController < ApplicationController
   def destroy
     @documento.destroy
     respond_to do |format|
-      format.html { redirect_to documentos_url, notice: "Documento was successfully destroyed." }
+      format.html { redirect_to @documento.seguimiento, notice: "Documento borrado." }
       format.json { head :no_content }
     end
   end
@@ -63,6 +73,13 @@ class DocumentosController < ApplicationController
       @documento = Documento.find(params[:id])
     end
 
+    def get_caso
+      @caso = Caso.find(params[:caso_id])
+    end
+
+    def get_seguimiento
+      @involucrado = Seguimiento.find(params[:seguimiento_id])
+    end
     # Only allow a list of trusted parameters through.
     def documento_params
       params.require(:documento).permit(:fecha, :seguimiento_id, :archivo, :descripcion)
@@ -72,6 +89,9 @@ class DocumentosController < ApplicationController
     # lo renombra como los milisegundos y coloca el nombre en adjunto
     # el nombre original se adjunta a la descripcion
     def upload
+      if params[:documento][:archivo].nil?        
+        return false
+      end
       uploaded_file = params[:documento][:archivo]
       nombre_original = uploaded_file.original_filename
       extension = File.extname(nombre_original)      
@@ -80,5 +100,6 @@ class DocumentosController < ApplicationController
         file.write(uploaded_file.read)
       end
       @documento.archivo = uploaded_file.original_filename
+      return true
     end
 end

@@ -31,15 +31,8 @@ class InvolucradosController < ApplicationController
   # POST /involucrados or /involucrados.json
   def create
     @involucrado = Involucrado.new(involucrado_params)
-    ok = false
     respond_to do |format|
-      begin
-        ok = @involucrado.save!
-      rescue 
-        ok = false        
-        @involucrado.errors.add(:alumno_id, :blank, message: "duplicado en el caso")
-      end
-      if ok
+      if @involucrado.save
         format.html { redirect_to @involucrado.caso, notice: "Involucrado creado." }
         format.json { render :show, status: :created, location: @involucrado }
       else
@@ -52,13 +45,7 @@ class InvolucradosController < ApplicationController
   # PATCH/PUT /involucrados/1 or /involucrados/1.json
   def update
     respond_to do |format|
-      begin
-        ok = @involucrado.update!(involucrado_params)
-      rescue 
-        ok = false        
-        @involucrado.errors.add(:alumno_id, :blank, message: "duplicado en el caso")
-      end
-      if ok
+      if @involucrado.update!(involucrado_params)
         #format.html { redirect_to @involucrado, notice: "Involucrado actualizado." }
         format.html { redirect_to @involucrado.caso, notice: "Involucrado actualizado." }
         format.json { render :show, status: :ok, location: @involucrado }
@@ -75,7 +62,7 @@ class InvolucradosController < ApplicationController
       @involucrado.destroy
     rescue ActiveRecord::InvalidForeignKey => e
       respond_to do |format|
-        format.html { redirect_to @involucrado.caso, notice: "No puede borar el involucrado hasta no eliminar sus contravenciones y castigos." }
+        format.html { redirect_to @involucrado.caso, notice: "No puede borrar el involucrado hasta no eliminar sus contravenciones y castigos." }
         format.json { head :no_content }
       end
       return

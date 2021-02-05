@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/', :to => redirect('/home.html')
   resources :faltas
   resources :contravenciones
   resources :sanciones
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
     resources :seguimientos do
       resources :documentos
     end
+  end
+  resources :casos do
+    resources :alumnos
   end
   resources :alumnos
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

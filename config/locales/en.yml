@@ -41,6 +41,14 @@ en:
         participacion: "Participación"
     errors:
       models:
+        alumno:
+          attributes:
+            nombre:
+              blank: "No puede dejarse en blanco"
+            rude:
+              blank: "No puede dejarse en blanco"
+            ci:
+              blank: "No puede dejarse en blanco"
         documento:
           attributes:
             descripcion:

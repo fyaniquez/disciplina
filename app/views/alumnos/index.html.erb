@@ -18,14 +18,11 @@
         <td><%= alumno.nombre %></td>
         <td><%= alumno.rude %></td>
         <td><%= alumno.ci %></td>
-        <td><%= link_to 'Show', alumno %></td>
-        <td><%= link_to 'Edit', edit_alumno_path(alumno) %></td>
-        <td><%= link_to 'Destroy', alumno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modificar', edit_alumno_path(alumno) %></td>
+        <td><%= link_to 'Borrar', alumno, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Alumno', new_alumno_path %>

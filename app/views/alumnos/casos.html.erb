@@ -1,0 +1,32 @@
+<h1>Casos Alumno <%= @alumno.nombre %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th>Denunciante</th>
+      <th>Descripcion</th>
+      <th>Responsable</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @casos.each do |caso| %>
+      <tr>
+        <td><%= caso.fecha.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= caso.estado %></td>
+        <td><%= caso.denunciante %></td>
+        <td><%= caso.descripcion %></td>
+        <td><%= caso.responsable %></td>
+        <td><%= link_to 'Ver', caso, :class => "button" %></td>
+        <td><%= link_to 'Modificar', edit_caso_path(caso), :class => "button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Volver', alumnos_path, :class => "button" %>

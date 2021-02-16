@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h1>Ficha de caso Nº<%= @caso.id %></h1>
 
 <p>
   <strong>Fecha:</strong>
@@ -24,11 +25,11 @@
 </p>
 
 <p>
-  <strong>Estudiantes involucrados:</strong>
   <% if @involucrados.empty? %>
     <p>No hay estudiantes registrados aún</p>
   <% else %>
   <table>
+  <caption><strong>Estudiantes involucrados:</strong></caption>
   <thead>
   <tr>
   <th>
@@ -56,7 +57,7 @@
     <p>No hay eventos registrados aún</p>
   <% else %>
   <table>
-  <caption>Seguimiento</caption>
+  <caption><strong>Seguimiento</strong></caption>
   <thead>  
   <tr>
   <th>Nro.</th>

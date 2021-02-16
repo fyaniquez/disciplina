@@ -21,11 +21,13 @@ class InvolucradosController < ApplicationController
     @involucrado.fecha = Time.now
     @involucrado.estado = "Vigente"
     @involucrado.caso_id = params[:caso_id]
+    @enlace = "/caso/#{@involucrado.caso.id}/alumno/new"
   end
 
   # GET /involucrados/1/edit
   def edit
     @alumnos = Alumno.all
+    @enlace = "/caso/#{@involucrado.caso.id}/alumno/new"
   end
 
   # POST /involucrados or /involucrados.json

@@ -1,10 +1,14 @@
 class AlumnosController < ApplicationController
-  before_action :set_alumno, only: %i[ show edit update destroy ]
-  before_action :get_caso, only: %i[ new ]
+  before_action :set_alumno, only: %i[ show edit update destroy casos]
+  #before_action :get_caso, only: %i[ new ]
 
   # GET /alumnos or /alumnos.json
   def index
     @alumnos = Alumno.all
+  end
+
+  def casos
+    @casos = Caso.where(id: Involucrado.select("caso_id").where(alumno_id: params[:id]))
   end
 
   # GET /alumnos/1 or /alumnos/1.json
@@ -14,7 +18,7 @@ class AlumnosController < ApplicationController
   # GET /alumnos/new
   def new
     @alumno = Alumno.new
-    @alumno.caso__id = @caso.id
+    @alumno.caso__id = params[:id]
   end
 
   # GET /alumnos/1/edit
